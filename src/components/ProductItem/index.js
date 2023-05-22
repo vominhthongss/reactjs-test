@@ -6,7 +6,9 @@ import "./style.css";
 function ProductItem(props) {
   const dispatch = useDispatch();
   const handleDelete = (product) => {
-    dispatch(deleteProduct(product));
+    if (window.confirm("Bạn sẽ xoá sản phẩm này ?") === true) {
+      dispatch(deleteProduct(product));
+    }
   };
   return (
     <div className={props.isList === true ? "product" : ""}>
