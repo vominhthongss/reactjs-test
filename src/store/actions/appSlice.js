@@ -11,7 +11,7 @@ export const appSlice = createSlice({
     addProduct: (state, action) => {
       return {
         ...state,
-        products: [...state.products, action.payload],
+        products: [action.payload,...state.products ],
       };
     },
 

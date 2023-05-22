@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { editProduct } from "../../../store/actions/appSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import "./style.css";
 
 function EditProduct() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const { register, handleSubmit } = useForm();
   const handleEdit = (product) => {
@@ -16,6 +17,8 @@ function EditProduct() {
       product: product,
     };
     dispatch(editProduct(obj));
+    alert("Cập nhật phẩm thành công");
+    navigate("/dashboard");
   };
   const products = useSelector((state) => state.app.products);
 
@@ -35,55 +38,62 @@ function EditProduct() {
   };
   return (
     <div>
-      <Link to="/dashboard">Quay về</Link>
+      <Link className="back" to="/dashboard">
+        {"<<"}Quay về
+      </Link>
       <div className="edit-container">
         <form onSubmit={handleSubmit(handleEdit)}>
           <div className="edit-form">
-            Id:
+            Mã sản phẩm:
             <input
+              className="input"
               defaultValue={product ? product.id : ""}
               {...register("id")}
               type="text"
             />
-            Name:
+            Tên:
             <input
+              className="input"
               defaultValue={product ? product.name : ""}
               {...register("name")}
               type="text"
             />
-            Year:
+            Năm:
             <input
+              className="input"
               defaultValue={product ? product.year : ""}
               {...register("year")}
               type="text"
             />
-            Price:
+            Giá:
             <input
+              className="input"
               defaultValue={product ? product.price : ""}
               {...register("price")}
               type="text"
             />
-            Image:
+            Hình:
             <input
               hidden
               defaultValue={product ? product.image : ""}
               {...register("image")}
               type="text"
             />
-            <img src={image ? image : ""} alt="" />
+            <img className="image" src={image ? image : ""} alt="" />
             <input
               type="file"
               onChange={(e) => {
                 handleImageUpload(e);
               }}
             />
-            Description:
+            Mô tả:
             <input
+              className="input"
               defaultValue={product ? product.description : ""}
               {...register("description")}
               type="text"
             />
-            <input type="submit" />
+            <input className="button" type="submit" value="Cập nhật" />
           </div>
         </form>
       </div>

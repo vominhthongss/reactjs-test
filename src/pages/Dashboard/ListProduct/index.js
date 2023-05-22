@@ -1,28 +1,44 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteProduct } from "../../../store/actions/appSlice";
+import ProductItem from "../../../components/ProductItem/index";
+import { useState } from "react";
+import './style.css';
 
 function List() {
   const products = useSelector((state) => state.app.products);
-  const dispatch = useDispatch();
-  const handleDelete = (product) => {
-    dispatch(deleteProduct(product));
-  };
-
-  const list = products.map((x,index) => {
+  const [isList, setIsList] = useState(true);
+  const gridView = products.map((product, index) => {
     return (
-      <div key={index}>
-        {x.id}| {x.name} | {x.year}  | {x.price} | {x.image} | {x.description}  <button onClick={() => handleDelete(x)}>Xoá</button>{" "}
-        <Link to={`edit/${x.id}`}>Sửa</Link>
+      <div className="grid-item">
+        <ProductItem key={index} product={product} />
       </div>
     );
   });
+  const listView = products.map((product, index) => {
+    return (
+      <div className="list-item">
+        <ProductItem key={index} product={product} isList={true} />
+      </div>
+    );
+  });
+  const handleToggleGridView= ()=>{
+    setIsList(!isList);
+  }
   return (
     <div>
       <div>
-        <Link to={"add"}>Thêm</Link>{" "}
+          <Link className="add" to={"add"}>+ Thêm sản phẩm</Link>
+        
+        <button onClick={handleToggleGridView}>
+          {isList ? "Grid view" : "List view"}
+        </button>
       </div>
-      <div>{list}</div>
+      <div className="container">
+        <div className={isList ? "list-container" : "grid-container"}>
+          {isList ? listView : gridView}
+        </div>
+      </div>
     </div>
   );
 }

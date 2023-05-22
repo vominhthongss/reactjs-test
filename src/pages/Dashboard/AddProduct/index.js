@@ -1,17 +1,21 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../../store/actions/appSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./style.css";
 
 function AddProduct() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
   const handleAdd = (product) => {
     product.image = image;
     dispatch(addProduct(product));
+    alert("Thêm sản phẩm thành công");
+    navigate("/dashboard");
   };
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -27,30 +31,34 @@ function AddProduct() {
   };
   return (
     <div>
-      <Link to="/dashboard">Quay về</Link>
-      <div>Thêm sản phẩm</div>
-      <form onSubmit={handleSubmit(handleAdd)}>
-        <div>
-          Id: <input {...register("id")} type="text" />
-          Name: <input {...register("name")} type="text" />
-          Year:
-          <input {...register("year")} type="text" />
-          Price:
-          <input {...register("price")} type="text" />
-          Image:
-          <input hidden {...register("image")} type="text" />
-          <img src={image ? image : ""} alt="" />
-          <input
-            type="file"
-            onChange={(e) => {
-              handleImageUpload(e);
-            }}
-          />
-          Description:
-          <input {...register("description")} type="text" />
-          <button>Thêm</button>
-        </div>
-      </form>
+      <Link className="back" to="/dashboard">
+        {"<<"}Quay về
+      </Link>
+      <div className="add-container">
+        <form onSubmit={handleSubmit(handleAdd)}>
+          <div className="add-form">
+            Mã sản phẩm:{" "}
+            <input className="input" {...register("id")} type="text" />
+            Tên: <input className="input" {...register("name")} type="text" />
+            Năm:
+            <input className="input" {...register("year")} type="text" />
+            Giá:
+            <input className="input" {...register("price")} type="text" />
+            Hình:
+            <input hidden {...register("image")} type="text" />
+            <img src={image ? image : ""} alt="" />
+            <input
+              type="file"
+              onChange={(e) => {
+                handleImageUpload(e);
+              }}
+            />
+            Mô tả:
+            <input className="input" {...register("description")} type="text" />
+            <button className="button">Thêm</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
