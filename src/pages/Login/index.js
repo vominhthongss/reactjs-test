@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "./style.css";
 
-const Login = () => {
+function Login() {
   const auth = require("../../data/user.json");
   const navigate = useNavigate();
   const {
@@ -15,7 +15,7 @@ const Login = () => {
       user.email === auth.user.email &&
       user.password === auth.user.password
     ) {
-      navigate("/home");
+      navigate("/dashboard");
     } else {
       alert("Wrong password !");
     }
@@ -69,6 +69,6 @@ const Login = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Login;

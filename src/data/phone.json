@@ -1,16 +1,26 @@
-{
-    "phones":[
-        {
-            "id":1,
-            "name":"iPhone"
-        },
-        {
-            "id":2,
-            "name":"Samsung"
-        },
-        {
-            "id":3,
-            "name":"Nokia"
-        }
-    ]
-}
+[
+  {
+    "id": 1,
+    "name": "iPhone",
+    "year":"2001",
+    "price":"10.000.000",
+    "image":"https://via.placeholder.com/200x200.png?text=Product",
+    "desctiption":"https://via.placeholder.com/200x200.png?text=Product"
+  },
+  {
+    "id": 2,
+    "name": "Samsung",
+    "year":"1976",
+    "price":"20.000.000",
+    "image":"https://via.placeholder.com/200x200.png?text=Product",
+    "desctiption":"https://via.placeholder.com/200x200.png?text=Product"
+  },
+  {
+    "id": 3,
+    "name": "Nokia",
+    "year":"2010",
+    "price":"30.000.000",
+    "image":"https://via.placeholder.com/200x200.png?text=Product",
+    "desctiption":"https://via.placeholder.com/200x200.png?text=Product"
+  }
+]
