@@ -17,7 +17,7 @@ function Login() {
     ) {
       navigate("/dashboard");
     } else {
-      alert("Wrong password !");
+      alert("Sai tài khoản hoặc mật khẩu !");
     }
   };
   return (
@@ -55,7 +55,7 @@ function Login() {
                   message: "Mật khẩu trống",
                 },
               })}
-              type="passwod"
+              type="password"
             />
             {errors.password?.message ? (
               <span className="error"> {errors.password.message}</span>

@@ -46,7 +46,7 @@ function AddProduct() {
             <input className="input" {...register("price")} type="text" />
             Hình:
             <input hidden {...register("image")} type="text" />
-            <img src={image ? image : ""} alt="" />
+            <img  className="image" src={image ? image : ""} alt="" />
             <input
               type="file"
               onChange={(e) => {
